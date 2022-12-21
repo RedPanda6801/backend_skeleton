@@ -14,7 +14,8 @@ router.post("/", async (req, res) => {
       userid: req.body.userid,
       password: req.body.password,
       email: req.body.email,
-      phone: req.body.phone,
+      role: req.body.role,
+      age: req.body.age,
     };
     logger.info(`(user.reg.params) ${JSON.stringify(params)}`);
 
@@ -78,11 +79,13 @@ router.get("/:id", isLoggedIn, async (req, res) => {
 router.put("/:id", isLoggedIn, async (req, res) => {
   try {
     const params = {
+      loginid: req.decoded.id, // 권한 확인용 decoded
       id: req.params.id,
-      departmentId: req.body.departmentId,
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
+      age: req.body.age,
+      role: req.body.role,
     };
     logger.info(`(user.update.params) ${JSON.stringify(params)}`);
 
@@ -108,6 +111,7 @@ router.put("/:id", isLoggedIn, async (req, res) => {
 router.delete("/:id", isLoggedIn, async (req, res) => {
   try {
     const params = {
+      loginid: req.decoded.id, // 권한 확인용 decoded
       id: req.params.id,
     };
     logger.info(`(user.delete.params) ${JSON.stringify(params)}`);
