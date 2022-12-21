@@ -13,6 +13,7 @@ const middleware = {
       if (decoded) {
         // 1. 토큰 검증이 성공한 경우 새로 갱신해 준다.
         const newToken = tokenUtil.makeToken(decoded);
+        req.decoded = decoded;
         res.set("token", newToken); // header 세팅
 
         next(); // 미들웨어 통과(계속 진행)
