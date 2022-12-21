@@ -16,11 +16,15 @@ module.exports = class User extends Sequelize.Model {
           type: Sequelize.STRING(500),
           allowNull: false,
         },
+        role: {
+          type: Sequelize.ENUM("강아지", "고양이"),
+          defaultValue: "강아지",
+        },
         email: {
           type: Sequelize.STRING(255),
         },
-        phone: {
-          type: Sequelize.STRING(255),
+        age: {
+          type: Sequelize.INTEGER,
         },
       },
       {
