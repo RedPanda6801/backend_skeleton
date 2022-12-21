@@ -83,26 +83,6 @@ const service = {
   async edit(params) {
     let result = null;
 
-    // 수정 권한 확인
-    try {
-      const user = await userDao.selectInfo(params);
-      logger.debug(`(userService.checkEditPermission) ${JSON.stringify(user)}`);
-      // 로그인한 유저와 입력된 userid로 찾은 유저의 id를 비교
-      if (user.id !== params.loginid) {
-        const err = new Error("Unauthorized Error");
-        logger.error(`(userService.checkEditPermisson) ${err.toString()}`);
-        return new Promise((resolve, reject) => {
-          reject(err);
-        });
-      }
-    } catch (err) {
-      console.log(err);
-      logger.error(`(userService.selectUserEdit) ${err.toString()}`);
-      return new Promise((resolve, reject) => {
-        reject(err);
-      });
-    }
-
     // 수정 처리
     try {
       result = await userDao.update(params);
@@ -122,28 +102,6 @@ const service = {
   // delete
   async delete(params) {
     let result = null;
-
-    // 삭제 권한 확인
-    try {
-      const user = await userDao.selectInfo(params);
-      logger.debug(
-        `(userService.checkDeletePermission) ${JSON.stringify(user)}`
-      );
-      // 로그인한 유저와 입력된 userid로 찾은 유저의 id를 비교
-      if (user.id !== params.loginid) {
-        const err = new Error("Unauthorized Error");
-        logger.error(`(userService.checkDeletePermisson) ${err.toString()}`);
-        return new Promise((resolve, reject) => {
-          reject(err);
-        });
-      }
-    } catch (err) {
-      console.log(err);
-      logger.error(`(userService.selectUserDelete) ${err.toString()}`);
-      return new Promise((resolve, reject) => {
-        reject(err);
-      });
-    }
 
     try {
       result = await userDao.delete(params);

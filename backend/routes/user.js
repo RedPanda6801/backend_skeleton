@@ -76,11 +76,10 @@ router.get("/:id", isLoggedIn, async (req, res) => {
 });
 
 // 수정
-router.put("/:id", isLoggedIn, async (req, res) => {
+router.put("/", isLoggedIn, async (req, res) => {
   try {
     const params = {
-      loginid: req.decoded.id, // 권한 확인용 decoded
-      id: req.params.id,
+      id: req.decoded.id,
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
@@ -108,11 +107,10 @@ router.put("/:id", isLoggedIn, async (req, res) => {
 });
 
 // 삭제
-router.delete("/:id", isLoggedIn, async (req, res) => {
+router.delete("/", isLoggedIn, async (req, res) => {
   try {
     const params = {
-      loginid: req.decoded.id, // 권한 확인용 decoded
-      id: req.params.id,
+      id: req.decoded.id, // 권한 확인용 decoded
     };
     logger.info(`(user.delete.params) ${JSON.stringify(params)}`);
 
