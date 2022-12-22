@@ -16,4 +16,4 @@ package-lock.json
 
 # dotenv environment variables file
 .env
-
+docker-compos.yml
